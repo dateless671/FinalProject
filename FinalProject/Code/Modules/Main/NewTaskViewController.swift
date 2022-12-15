@@ -27,10 +27,12 @@ class NewTaskViewController: UIViewController{
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var newTaskTopConstraint: NSLayoutConstraint!
     
     
     //variables
-    var taskViewModel: TaskViewModel!
+    private var taskViewModel: TaskViewModel!
+    private var keyboardOpened = false
     
     
     //lifeCycle
@@ -57,6 +59,8 @@ class NewTaskViewController: UIViewController{
         self.taskDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "Short Description", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.55)])
         self.taskDescriptionTextField.addTarget(self, action: #selector(textFieldInputChanged(_:)), for: .editingChanged)
         
+        self.disableButton()
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Self.viewTapped(_:)))
         tapGesture.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGesture)
@@ -71,11 +75,8 @@ class NewTaskViewController: UIViewController{
             self.secondTextField.text = seconds.appendZeros()
         }
         
-        if self.taskViewModel.isTaskValid(){
-            //dsa
-        } else{
-            //dsadsa
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     //outlets object func
@@ -110,17 +111,61 @@ class NewTaskViewController: UIViewController{
             
         }
         
+        checkButtonStatus()
+        
         
     }
     @objc func viewTapped(_ sender: UITapGestureRecognizer){
         self.view.endEditing(true)
     }
     
+    @objc func keyboardWillShow(_ notification: Notification){
+        if !Constants.hasTopNotch, !keyboardOpened {
+            self.keyboardOpened.toggle()
+            self.newTaskTopConstraint.constant -= self.view.frame.height * 0.2
+            self.view.layoutIfNeeded()
+        }
+    }
+    @objc func keyboardWillHide(_ notification: Notification){
+        self.newTaskTopConstraint.constant = 20
+        keyboardOpened = false
+        self.view.layoutIfNeeded()
+    }
     
     //functions
+    override class func description() -> String {
+        return "NewTaskViewController"
+    }
     
-    
-    
+    func enableButton() {
+        if(self.startButton.isUserInteractionEnabled == false){
+            
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut){
+                self.startButton.layer.opacity = 1
+            }completion: {_ in
+                self.startButton.isUserInteractionEnabled.toggle()
+            }
+        }
+    }
+    func disableButton(){
+        if(self.startButton.isUserInteractionEnabled){
+            
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut){
+                self.startButton.layer.opacity = 0.25
+            }completion: {_ in
+                self.startButton.isUserInteractionEnabled.toggle()
+            }
+        }
+    }
+    func checkButtonStatus() {
+        if self.taskViewModel.isTaskValid(){
+            //enable button
+            enableButton()
+        } else{
+            //disable button
+            disableButton()
+        }
+    }
 }
 extension NewTaskViewController:UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -164,5 +209,6 @@ extension NewTaskViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.taskViewModel.setSelectedIndex(to: indexPath.item)
         self.collectionView.reloadSections(IndexSet(0..<1))
+        checkButtonStatus()
     }
 }

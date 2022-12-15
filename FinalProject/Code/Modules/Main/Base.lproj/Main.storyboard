@@ -264,6 +264,7 @@
                         <outlet property="hourTextField" destination="Hbr-If-S3f" id="pFJ-dB-evZ"/>
                         <outlet property="minuteTextField" destination="vZ5-iy-dhM" id="plC-fV-xnX"/>
                         <outlet property="nameDescriptionContainerView" destination="lof-Ge-C08" id="XSh-fC-8mj"/>
+                        <outlet property="newTaskTopConstraint" destination="ZFc-3F-Yy2" id="tDf-3X-f0D"/>
                         <outlet property="secondTextField" destination="zzz-dY-fEc" id="nSa-KP-mlh"/>
                         <outlet property="startButton" destination="INA-st-1ao" id="uge-ku-VSf"/>
                         <outlet property="taskDescriptionTextField" destination="mI5-tD-Ww7" id="opI-oq-EeB"/>

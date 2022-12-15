@@ -64,7 +64,7 @@ class TaskViewModel{
         var newMinutes = value
         if(value >= 60){
             newMinutes -= 60
-            minutes.value += 1
+            hours.value += 1
         }
         self.minutes.value = newMinutes
     }

@@ -53,4 +53,56 @@ class TaskViewModel{
     func getTaskType() -> [TaskType]{
         return self.taskType
     }
+    
+    
+    
+    func setHours(to value: Int){
+        self.hours.value = value
+    }
+    
+    func setMinutes(to value: Int){
+        var newMinutes = value
+        if(value >= 60){
+            newMinutes -= 60
+            minutes.value += 1
+        }
+        self.minutes.value = newMinutes
+    }
+    
+    func setSeconds(to value: Int){
+        var newSeconds = value
+        if(value >= 60){
+            newSeconds -= 60
+            minutes.value += 1
+        }
+        if(minutes.value >= 60){
+            minutes.value -= 60
+            hours.value += 1
+        }
+        
+        self.seconds.value = newSeconds
+    }
+    
+    func getHours() -> Box<Int>{
+        return self.hours
+    }
+    func getMinutes() -> Box<Int>{
+        return self.minutes
+    }
+    func getSeconds() -> Box<Int>{
+        return self.seconds
+    }
+    
+    func computeSeconds(){
+        self.task.seconds = (hours.value * 3600) + (minutes.value * 60) + seconds.value
+        self.task.timeStamp = Date().timeIntervalSince1970
+    }
+    
+    func isTaskValid() -> Bool{
+        if(!task.taskName.isEmpty && !task.taskDescription.isEmpty && selectedIndex != -1 && (self.seconds.value > 0 || self.minutes.value > 0 || self.hours.value > 0)){
+            return true
+        }
+        return false
+    }
 }
+

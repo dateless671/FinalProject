@@ -56,9 +56,31 @@ class NewTaskViewController: UIViewController{
         
         self.taskDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "Short Description", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.55)])
         self.taskDescriptionTextField.addTarget(self, action: #selector(textFieldInputChanged(_:)), for: .editingChanged)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Self.viewTapped(_:)))
+        tapGesture.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGesture)
+        
+        self.taskViewModel.getHours().bind{ hours in
+            self.hourTextField.text = hours.appendZeros()
+        }
+        self.taskViewModel.getMinutes().bind{ minutes in
+            self.minuteTextField.text = minutes.appendZeros()
+        }
+        self.taskViewModel.getSeconds().bind{ seconds in
+            self.secondTextField.text = seconds.appendZeros()
+        }
+        
+        if self.taskViewModel.isTaskValid(){
+            //dsa
+        } else{
+            //dsadsa
+        }
     }
     
     //outlets object func
+    
+    
     @IBAction func startButtonPressed(_ sender: Any) {
     }
     
@@ -70,13 +92,21 @@ class NewTaskViewController: UIViewController{
         
         if (textField == taskNameTextField){
             self.taskViewModel.setTaskName(to: text)
+            
         }else if(textField == taskDescriptionTextField){
             self.taskViewModel.setTaskDescription(to: text)
+            
         }else if(textField == hourTextField){
+            guard let hours = Int(text) else {return}
+            self.taskViewModel.setHours(to: hours)
             
         }else if(textField == minuteTextField){
+            guard let minutes = Int(text) else {return}
+            self.taskViewModel.setMinutes(to:minutes)
             
         }else{
+            guard let seconds = Int(text) else {return}
+            self.taskViewModel.setSeconds(to: seconds)
             
         }
         
@@ -98,6 +128,14 @@ extension NewTaskViewController:UITextFieldDelegate{
         
         let currentText: NSString = (textField.text ?? "") as NSString
         let newString: NSString = currentText.replacingCharacters(in: range, with: string) as NSString
+        
+        guard let text = textField.text else {return false}
+        
+        if (text.count == 2 && text.starts(with: "0")) {
+            textField.text?.removeFirst()
+            textField.text? += string
+            self.textFieldInputChanged(textField)
+        }
         
         return newString.length <= maxLenght
     }

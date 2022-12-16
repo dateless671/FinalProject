@@ -30,6 +30,7 @@
 		E137C5D2293F7F2F00559317 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137C5D1293F7F2F00559317 /* Task.swift */; };
 		E137C5D6293F804800559317 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137C5D5293F804800559317 /* TaskViewModel.swift */; };
 		E137C5D8293FA0FA00559317 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E137C5D7293FA0FA00559317 /* NewTaskViewController.swift */; };
+		E146A926294BEE5900E86B69 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146A925294BEE5800E86B69 /* TimerViewController.swift */; };
 		E1B4A02929462552005E22B8 /* TaskTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B4A02729462552005E22B8 /* TaskTypeCollectionViewCell.swift */; };
 		E1B4A02A29462552005E22B8 /* TaskTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B4A02829462552005E22B8 /* TaskTypeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		E137C5D1293F7F2F00559317 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E137C5D5293F804800559317 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		E137C5D7293FA0FA00559317 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		E146A925294BEE5800E86B69 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E1B4A02729462552005E22B8 /* TaskTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1B4A02829462552005E22B8 /* TaskTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,8 +151,9 @@
 				E137C5D3293F800800559317 /* Cells */,
 				E137C5D4293F801500559317 /* ViewModels */,
 				E11714D0293F67DA00BED781 /* MainViewController.swift */,
-				E11714D2293F67DA00BED781 /* Main.storyboard */,
 				E137C5D7293FA0FA00559317 /* NewTaskViewController.swift */,
+				E146A925294BEE5800E86B69 /* TimerViewController.swift */,
+				E11714D2293F67DA00BED781 /* Main.storyboard */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				E11714D7293F67DA00BED781 /* FinalProject.xcdatamodeld in Sources */,
 				E11714CF293F67DA00BED781 /* SceneDelegate.swift in Sources */,
 				E137C5CC293F7BCF00559317 /* ColorExtensions.swift in Sources */,
+				E146A926294BEE5900E86B69 /* TimerViewController.swift in Sources */,
 				E137C5D2293F7F2F00559317 /* Task.swift in Sources */,
 				E137C5D0293F7D4600559317 /* Constants.swift in Sources */,
 			);

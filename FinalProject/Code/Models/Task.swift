@@ -22,7 +22,7 @@ struct Task{
 }
 
 enum CountdownState{
-    case suspending
+    case suspended
     case running
     case paused
 }

@@ -48,15 +48,15 @@ class NewTaskViewController: UIViewController{
         self.nameDescriptionContainerView.layer.cornerRadius = 12
         
         [self.hourTextField, self.minuteTextField, self.secondTextField].forEach {
-            $0?.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.font : UIFont(name: "Code-Pro-Bold-LC", size: 55)!, NSAttributedString.Key.foregroundColor: UIColor.black])
+            $0?.attributedPlaceholder = NSAttributedString(string: "00", attributes: [NSAttributedString.Key.font : UIFont(name: "Code-Pro-Bold-LC", size: 55)!, NSAttributedString.Key.foregroundColor: UIColor.systemGray6])
             $0?.delegate = self
             $0?.addTarget(self, action: #selector(textFieldInputChanged(_:)), for: .editingChanged)
         }
         
-        self.taskNameTextField.attributedPlaceholder = NSAttributedString(string: "Task Name", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.55)])
+        self.taskNameTextField.attributedPlaceholder = NSAttributedString(string: "Task Name", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.systemGray5.withAlphaComponent(0.55)])
         self.taskNameTextField.addTarget(self, action: #selector(textFieldInputChanged(_:)), for: .editingChanged)
         
-        self.taskDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "Short Description", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.55)])
+        self.taskDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "Short Description", attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Medium", size: 16.5)!, NSAttributedString.Key.foregroundColor: UIColor.systemGray5.withAlphaComponent(0.55)])
         self.taskDescriptionTextField.addTarget(self, action: #selector(textFieldInputChanged(_:)), for: .editingChanged)
         
         self.disableButton()

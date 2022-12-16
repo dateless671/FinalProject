@@ -46,8 +46,8 @@ class TaskTypeCollectionViewCell: UICollectionViewCell {
         self.typeName.text = taskType.typeName
         if(isSelected){
             self.imageContainerView.backgroundColor = UIColor(hex: "17b890").withAlphaComponent(0.5)
-            self.typeName.textColor = UIColor(hex: "006666")
-            self.imageVIew.tintColor = UIColor.white
+            self.typeName.textColor = UIColor.systemGray6
+            self.imageVIew.tintColor = UIColor.systemGray6
             self.imageVIew.image = UIImage(systemName: taskType.symbolName, withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .medium))
         }else{
             self.imageVIew.image = UIImage(systemName: taskType.symbolName, withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .regular))
@@ -56,7 +56,7 @@ class TaskTypeCollectionViewCell: UICollectionViewCell {
     }
     func reset(){
         self.imageContainerView.backgroundColor = UIColor.clear
-        self.typeName.textColor = UIColor.black
-        self.imageVIew.tintColor = UIColor.black
+        self.typeName.textColor = UIColor(hex: "F6A63A")
+        self.imageVIew.tintColor = UIColor(hex: "F6A63A")
     }
 }

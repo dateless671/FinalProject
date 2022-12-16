@@ -42,8 +42,8 @@ class TimerViewContoller: UIViewController {
     
     var timerSeconds = 0
     
-    let timeAttributes = [NSAttributedString.Key.font: UIFont(name: "Code-Pro-Bold-LC", size: 46)!, .foregroundColor: UIColor.black]
-    let semiboldAttributes = [NSAttributedString.Key.font: UIFont(name: "Code-Pro-Bold-LC", size: 32)!, .foregroundColor: UIColor.black]
+    let timeAttributes = [NSAttributedString.Key.font: UIFont(name: "Code-Pro-Bold-LC", size: 46)!, .foregroundColor: UIColor.systemGray5]
+    let semiboldAttributes = [NSAttributedString.Key.font: UIFont(name: "Code-Pro-Bold-LC", size: 32)!, .foregroundColor: UIColor.systemGray5]
     
     
     let timeTrackLayer = CAShapeLayer()
@@ -105,7 +105,7 @@ class TimerViewContoller: UIViewController {
         }
     }
     
-    //objc functions
+    //outlets & objc functions
     
     @IBAction func closedButtonPressed(_ sender: Any) {
         self.timeTrackLayer.removeFromSuperlayer()
@@ -166,17 +166,18 @@ class TimerViewContoller: UIViewController {
     }
     
     func setupLayers(){
+        let CCcolor = UIColor(hex: "#37D5D6")
         let radius = self.timerView.frame.width < self.timerView.frame.height ? self.timerView.frame.width / 2 : self.timerView.frame.height / 2
         let arcPath = UIBezierPath(arcCenter: CGPoint(x: timerView.frame.height / 2, y: timerView.frame.width / 2), radius: radius, startAngle: 0, endAngle: 360.degreeToRadians(), clockwise: true)
         
         self.timeTrackLayer.path = arcPath.cgPath
-        self.timeTrackLayer.strokeColor = UIColor(hex: "F2A041").cgColor
+        self.timeTrackLayer.strokeColor = UIColor.systemGray4.cgColor
         self.timeTrackLayer.lineWidth = 20
         self.timeTrackLayer.fillColor = UIColor.clear.cgColor
         self.timeTrackLayer.lineCap = .round
         
         self.timeCircleFillLayer.path = arcPath.cgPath
-        self.timeCircleFillLayer.strokeColor = UIColor.black.cgColor
+        self.timeCircleFillLayer.strokeColor = UIColor(hex: "F2A041").cgColor
         self.timeCircleFillLayer.lineWidth = 21
         self.timeCircleFillLayer.fillColor = UIColor.clear.cgColor
         self.timeCircleFillLayer.lineCap = .round
